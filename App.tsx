@@ -426,9 +426,9 @@ const App: React.FC = () => {
                     {t.skills.categories.mobile}
                   </h3>
                   <div className="space-y-6">
-                    <SkillBar name="Java & Kotlin" percentage={95} icon={<Code2 size={16}/>} />
-                    <SkillBar name="Android SDK & Jetpack" percentage={90} icon={<Layout size={16}/>} />
-                    <SkillBar name="MVVM & Clean Arch" percentage={85} icon={<Database size={16}/>} />
+                    <SkillBar name="Java" percentage={95} icon={<Code2 size={16}/>} />
+                    <SkillBar name="Android SDK & XML" percentage={90} icon={<Layout size={16}/>} />
+                    <SkillBar name="MVVM & Clean Coding" percentage={85} icon={<Database size={16}/>} />
                   </div>
                </div>
 
@@ -438,8 +438,8 @@ const App: React.FC = () => {
                       <div className="p-3 bg-neon/10 rounded-xl text-neon"><Globe size={28} /></div>
                       {t.skills.categories.web}
                     </h3>
-                    <SkillBar name="React & Tailwind" percentage={80} icon={<Layout size={16}/>} />
-                    <SkillBar name="HTML5 / CSS3" percentage={90} icon={<Code2 size={16}/>} />
+                    <SkillBar name="HTML & CSS " percentage={80} icon={<Layout size={16}/>} />
+                    <SkillBar name="Javascript" percentage={20} icon={<Code2 size={16}/>} />
                   </div>
                </div>
             </div>
