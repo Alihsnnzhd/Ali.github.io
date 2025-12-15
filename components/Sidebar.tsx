@@ -40,8 +40,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, lang
             </div>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-white font-bold text-lg tracking-wider font-en">Ali.Dev</h1>
-            <span className="text-xs text-neon/80 font-en tracking-widest uppercase">Android</span>
+            <h1 className="text-white font-bold text-lg tracking-wider font-en">Ali_hsnnzhd</h1>
+            <span className="text-xs text-neon/80 font-en tracking-widest uppercase">Android Developer</span>
           </div>
         </div>
 
