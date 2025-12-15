@@ -468,14 +468,14 @@ const App: React.FC = () => {
                 />
                 <ContactCard 
                     icon={<Smartphone size={24} />} 
-                    label="Cafe Bazaar" 
+                    label="Cafe Bazzar" 
                     value="Developer Profile" 
                     link="https://cafebazaar.ir/developer/ali_hsnnzhd"
                 />
                  <ContactCard 
                     icon={<Instagram size={24} />} 
                     label="Instagram" 
-                    value="@Ali.Dev" 
+                    value="@Ali_hsnnzhd" 
                     link="#"
                 />
             </div>

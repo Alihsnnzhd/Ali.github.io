@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection, lang
 
   return (
     // Changed: 'fixed bottom-0' for mobile, 'sticky top-0 h-screen' for desktop.
-    <aside className="fixed bottom-0 left-0 right-0 z-50 md:sticky md:top-0 md:h-screen md:w-80 flex flex-col items-center py-4 md:py-8 pointer-events-none">
+    <aside className="fixed bottom-0 left-0 right-0 z-50 md:left-0 md:top-0 md:h-screen md:w-80 flex flex-col items-center py-4 md:py-8 pointer-events-none">
       
       {/* Glass Container - Adjusted sizing for better 'fit' */}
       <div className="pointer-events-auto bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] 
