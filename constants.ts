@@ -88,6 +88,7 @@ export const translations: Record<'fa' | 'en', Translation> = {
         mobile: 'توسعه موبایل',
         web: 'توسعه وب',
         programming: 'زبان‌های برنامه‌نویسی',
+        Design: 'طراحی',
       },
     },
     footer: {
@@ -170,6 +171,7 @@ export const translations: Record<'fa' | 'en', Translation> = {
         mobile: 'Mobile Development',
         web: 'Web Development',
         programming: 'Programming Languages',
+        Design: 'Design'
       },
     },
     footer: {

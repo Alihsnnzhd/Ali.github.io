@@ -45,6 +45,7 @@ export interface Translation {
       mobile: string;
       web: string;
       programming: string;
+      Design: string;
     };
   };
   footer: {
