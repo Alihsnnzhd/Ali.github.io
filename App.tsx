@@ -438,8 +438,20 @@ const App: React.FC = () => {
                       <div className="p-3 bg-neon/10 rounded-xl text-neon"><Globe size={28} /></div>
                       {t.skills.categories.web}
                     </h3>
-                    <SkillBar name="HTML & CSS " percentage={80} icon={<Layout size={16}/>} />
+                    <SkillBar name="HTML & CSS" percentage={80} icon={<Layout size={16}/>} />
                     <SkillBar name="Javascript" percentage={20} icon={<Code2 size={16}/>} />
+                  </div>
+               </div>
+
+               <div className="space-y-10">
+                  <div className="bg-[#111] border border-white/5 rounded-[40px] p-10 hover:border-neon/30 transition-all duration-500">
+                    <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-4">
+                      <div className="p-3 bg-neon/10 rounded-xl text-neon"><Globe size={28} /></div>
+                      {t.skills.categories.web}
+                    </h3>
+                    <SkillBar name="Photoshop" percentage={95} icon={<Layout size={16}/>} />
+                    <SkillBar name="Illustrator" percentage={85} icon={<Code2 size={16}/>} />
+                    <SkillBar name="Adobe XD" percentage={80} icon={<Code2 size={16}/>} />
                   </div>
                </div>
             </div>
