@@ -2,7 +2,7 @@
   "name": "alihsnnzhd-portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Alihsnnzhd.github.io/Ali.github.io",
+  "homepage": "https://Alihsnnzhd.github.io",
   "type": "module",
   "scripts": {
   "dev": "vite",
