@@ -476,7 +476,7 @@ const App: React.FC = () => {
                     icon={<Instagram size={24} />} 
                     label="Instagram" 
                     value="@Ali_hsnnzhd" 
-                    link="#"
+                    link="https://instagram.com/ali_hsnnzhd"
                 />
             </div>
 
