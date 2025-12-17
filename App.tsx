@@ -37,8 +37,8 @@ const CustomCursor = () => {
 
   return (
     <>
-      <div ref={cursorDotRef} className="cursor-dot hidden md:block"></div>
-      <div ref={cursorOutlineRef} className="cursor-outline hidden md:block"></div>
+      <div ref={cursorDotRef} className="cursor-dot hidden lg:block"></div>
+      <div ref={cursorOutlineRef} className="cursor-outline hidden lg:block"></div>
     </>
   );
 };
@@ -272,115 +272,108 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen bg-dark-bg text-white selection:bg-neon selection:text-black overflow-x-hidden cursor-none ${lang === 'fa' ? 'font-fa' : 'font-en'}`}>
-      <CustomCursor />
-      <Particles />
-      <div className="bg-noise fixed inset-0 z-0 pointer-events-none"></div>
-
-      {/* Mobile Top Bar (Language Switcher) - Added spacing and backdrop */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 p-4 flex justify-between items-center bg-dark-bg/80 backdrop-blur-md border-b border-white/5">
-          <span className="font-bold text-neon">&lt;Ali.Dev /&gt;</span>
-          <button 
-            onClick={toggleLang}
-            className="flex items-center gap-2 bg-[#131313] border border-white/10 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg active:scale-95 transition-transform"
-          >
-            <Globe size={14} className="text-neon"/>
-            {lang === 'fa' ? 'EN' : 'FA'}
-          </button>
-      </div>
-
-      {/* Main Layout Grid */}
-      <div className="flex flex-col md:flex-row relative z-10 pt-16 md:pt-0"> {/* Added pt-16 for mobile top bar */}
+        <CustomCursor />
+        <Particles />
+        <div className="bg-noise fixed inset-0 z-0 pointer-events-none"></div>
         
-        {/* Sidebar Navigation */}
+        {/* Mobile Top Bar - بدون تغییر */}
+        <div className="lg:hidden fixed top-0 left-0 right-0 z-40 p-4 flex justify-between items-center bg-dark-bg/80 backdrop-blur-lg border-b border-white/5">
+            <span className="font-bold text-neon">&lt;Ali.Dev /&gt;</span>
+            <button 
+                onClick={toggleLang}
+                className="flex items-center gap-2 bg-[#131313] border border-white/10 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg active:scale-95 transition-transform"
+            >
+                <Globe size={14} className="text-neon"/>
+                {lang === 'fa' ? 'EN' : 'FA'}
+            </button>
+        </div>
+
+        {/* --- 🟢 شروع ساختار اصلاح شده --- */}
+
+        {/* ۱. کامپوننت سایدبار به تنهایی و خارج از هر div دیگری قرار می‌گیرد. */}
+        {/*    چون position:fixed دارد، خودش جای خود را در صفحه پیدا می‌کند. */}
         <Sidebar 
-          activeSection={activeSection} 
-          setActiveSection={setActiveSection} 
-          lang={lang} 
-          t={t}
-          toggleLang={toggleLang}
+            activeSection={activeSection} 
+            setActiveSection={setActiveSection} 
+            lang={lang} 
+            t={t}
+            toggleLang={toggleLang}
         />
 
-        {/* Content Area */}
-        <main className="flex-1 p-4 md:p-12 pb-32 md:pb-12 w-full max-w-7xl mx-auto space-y-32">
-          
-          {/* Hero Section */}
-          <section id="home" className="min-h-[85vh] flex flex-col justify-center items-start relative reveal-on-scroll">
-            <div className="absolute -top-20 -right-20 w-96 h-96 bg-neon/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+        {/* ۲. محتوای اصلی (main) دیگر داخل یک div با کلاس flex نیست. */}
+        {/*    - کلاس `lg:ml-80` در حالت دسکتاپ، فضا برای سایدبار ایجاد می‌کند. */}
+        {/*    - کلاس `pt-20` در حالت موبایل، از رفتن محتوا به زیر نوار بالا جلوگیری می‌کند. */}
+        <main className="relative z-10 flex-1 p-4 pt-20 lg:pt-12 lg:p-12 pb-32 w-full max-w-7xl mx-auto space-y-32 lg:ml-80">
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
-              <div className="order-2 lg:order-1 relative">
-                
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a0a0a] border border-neon/20 text-neon text-xs font-mono mb-8 hover:border-neon/50 transition-colors cursor-default">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-neon"></span>
-                  </span>
-                  Ready to Innovate
-                </div>
-                
-                <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tight">
-                  <span className="block text-white glitch-text filter drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" data-text={t.hero.title}>{t.hero.title}</span>
-                </h1>
-                
-                <p className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-xl mb-10 pl-6 border-l-4 border-neon/50">
-                  {t.hero.description}
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-6">
-                  <button className="group relative bg-neon text-black px-8 py-4 rounded-2xl font-black text-lg overflow-hidden transition-all hover:scale-105">
-                     <div className="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                     <span className="relative flex items-center gap-2">
-                        {t.hero.cta} <Download size={20} />
-                     </span>
-                  </button>
-                  
-                  <div className="flex gap-4">
-                     {[Github, Instagram].map((Icon, i) => (
-                         <a key={i} href="#" className="w-14 h-14 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center text-gray-400 hover:text-neon hover:border-neon hover:-translate-y-1 transition-all duration-300">
-                             <Icon size={24} />
-                         </a>
-                     ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="order-1 lg:order-2 flex justify-center relative">
-                 <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] group">
-                    <div className="absolute inset-0 bg-neon/20 rounded-full blur-[60px] group-hover:bg-neon/30 transition-all duration-500"></div>
-                    
-                    {/* Abstract Shapes */}
-                    <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-neon rounded-tr-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-neon rounded-bl-3xl"></div>
-                    
-                    <div className="absolute inset-4 rounded-[40px] overflow-hidden border border-white/10 bg-[#111] shadow-2xl">
-                       <img 
-                        src="https://picsum.photos/600/600" 
-                        alt="Avatar" 
-                        className="w-full h-full object-cover opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-110" 
-                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+            {/* Hero Section */}
+            <section id="home" className="min-h-[85vh] flex flex-col justify-center items-start relative reveal-on-scroll">
+                <div className="absolute -top-20 -right-20 w-96 h-96 bg-neon/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
+                    <div className="order-2 lg:order-1 relative">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0a0a0a] border border-neon/20 text-neon text-xs font-mono mb-8 hover:border-neon/50 transition-colors cursor-default">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-neon"></span>
+                            </span>
+                            Ready to Innovate
+                        </div>
+                        <h1 className="text-5xl lg:text-8xl font-black mb-8 leading-tight tracking-tight">
+                            <span className="block text-white glitch-text filter drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]" data-text={t.hero.title}>{t.hero.title}</span>
+                        </h1>
+                        <p className="text-gray-400 text-lg lg:text-xl leading-relaxed max-w-xl mb-10 pl-6 border-l-4 border-neon/50">
+                            {t.hero.description}
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-6">
+                            <button className="group relative bg-neon text-black px-8 py-4 rounded-2xl font-black text-lg overflow-hidden transition-all hover:scale-105">
+                                <div className="absolute inset-0 bg-white/40 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                <span className="relative flex items-center gap-2">
+                                    {t.hero.cta} <Download size={20} />
+                                </span>
+                            </button>
+                            <div className="flex gap-4">
+                                {[Github, Instagram].map((Icon, i) => (
+                                    <a key={i} href="#" className="w-14 h-14 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center text-gray-400 hover:text-neon hover:border-neon hover:-translate-y-1 transition-all duration-300">
+                                        <Icon size={24} />
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                 </div>
-              </div>
-            </div>
-          </section>
+                    <div className="order-1 lg:order-2 flex justify-center relative">
+                        <div className="relative w-72 h-72 lg:w-[450px] lg:h-[450px] group">
+                            <div className="absolute inset-0 bg-neon/20 rounded-full blur-[60px] group-hover:bg-neon/30 transition-all duration-500"></div>
+                            {/* Abstract Shapes */}
+                            <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-neon rounded-tr-3xl"></div>
+                            <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-neon rounded-bl-3xl"></div>
+                            <div className="absolute inset-4 rounded-[40px] overflow-hidden border border-white/10 bg-[#111] shadow-2xl">
+                                <img 
+                                    src="https://picsum.photos/600/600" 
+                                    alt="Avatar" 
+                                    className="w-full h-full object-cover opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-110" 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
           {/* Experience Section */}
           <section id="experience" className="reveal-on-scroll">
             <div className="flex items-end gap-4 mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+              <h2 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter">
                 <span className="text-neon text-6xl block mb-2">01.</span> {t.experience.title}
               </h2>
             </div>
 
-            <div className="relative border-l-2 border-white/5 ml-4 md:ml-8 space-y-16 pl-8 md:pl-12">
+            <div className="relative border-l-2 border-white/5 ml-4 lg:ml-8 space-y-16 pl-8 lg:pl-12">
               {t.experience.items.map((job, idx) => (
                 <div key={idx} className="relative group">
                   {/* Timeline Node */}
-                  <div className="absolute -left-[41px] md:-left-[57px] top-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#050505] border-4 border-neon shadow-[0_0_20px_#39ff14] z-10 transition-transform group-hover:scale-150"></div>
+                  <div className="absolute -left-[41px] lg:-left-[57px] top-0 w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-[#050505] border-4 border-neon shadow-[0_0_20px_#39ff14] z-10 transition-transform group-hover:scale-150"></div>
                   
                   <div className="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-neon/50 p-8 rounded-r-3xl hover:bg-white/5 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-4">
                         <h3 className="text-2xl font-bold text-white group-hover:text-neon transition-colors">{job.title}</h3>
                         <span className="px-3 py-1 bg-neon-dim text-neon rounded-full text-xs font-mono border border-neon/20 whitespace-nowrap w-fit">{job.date}</span>
                     </div>
@@ -399,12 +392,12 @@ const App: React.FC = () => {
           {/* Projects Section */}
           <section id="projects" className="reveal-on-scroll">
             <div className="flex items-end gap-4 mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+              <h2 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter">
                 <span className="text-neon text-6xl block mb-2">02.</span> {t.projects.title}
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-8">
               {t.projects.items.map((project, idx) => (
                 <ProjectCard key={idx} item={project} lang={lang} />
               ))}
@@ -414,12 +407,12 @@ const App: React.FC = () => {
           {/* Skills Section */}
           <section id="skills" className="reveal-on-scroll">
              <div className="flex items-end gap-4 mb-16">
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+              <h2 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter">
                 <span className="text-neon text-6xl block mb-2">03.</span> {t.skills.title}
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                <div className="bg-[#111] border border-white/5 rounded-[40px] p-10 hover:border-neon/30 transition-all duration-500">
                   <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-4">
                     <div className="p-3 bg-neon/10 rounded-xl text-neon"><Smartphone size={28} /></div>
@@ -460,12 +453,12 @@ const App: React.FC = () => {
           {/* Reimagined Contact Section */}
           <section id="contact" className="reveal-on-scroll pb-20">
             <div className="flex items-end gap-4 mb-16">
-               <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">
+               <h2 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tighter">
                 <span className="text-neon text-6xl block mb-2">04.</span> {t.nav.contact}
               </h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <ContactCard 
                     icon={<Mail size={24} />} 
                     label="Email Me" 
@@ -492,7 +485,7 @@ const App: React.FC = () => {
                 />
             </div>
 
-            <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-gray-500 font-mono text-sm gap-4">
+            <div className="mt-20 pt-10 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center text-gray-500 font-mono text-sm gap-4">
                 <p>{t.footer.text}</p>
                 <p className="flex items-center gap-2">Designed & Built by <span className="text-neon">Ali</span></p>
             </div>
@@ -500,7 +493,6 @@ const App: React.FC = () => {
 
         </main>
       </div>
-    </div>
   );
 };
 
